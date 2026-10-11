@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yang Fei — AI video &amp; visual design</title>
+<meta name="description" content="Spec film, vertical cut and the pipeline behind them. Script to shot list to generation to cut, by one pair of hands.">
+<style>
+  :root{
+    --bg:#0d0f11;
+    --panel:#14171a;
+    --line:#242a2f;
+    --ink:#eceff1;
+    --dim:#9aa4ad;
+    --amber:#d99a5b;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg);color:var(--ink);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:980px;margin:0 auto;padding:0 22px}
+  a{color:var(--amber);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  header{padding:64px 0 8px}
+  .kicker{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin:0 0 18px}
+  h1{font-size:38px;line-height:1.15;margin:0 0 16px;letter-spacing:-.02em;font-weight:600}
+  .lede{font-size:18px;color:#c6ced5;margin:0 0 10px;max-width:60ch}
+  .meta{font-size:14px;color:var(--dim);margin:22px 0 0;display:flex;flex-wrap:wrap;gap:6px 18px}
+  .meta b{color:var(--ink);font-weight:600}
+
+  section{padding:52px 0;border-top:1px solid var(--line);margin-top:44px}
+  h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin:0 0 26px;font-weight:600}
+  h3{font-size:20px;margin:0 0 10px;font-weight:600;letter-spacing:-.01em}
+
+  .player{background:#000;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  video{display:block;width:100%;height:auto;background:#000}
+  .cap{font-size:13px;color:var(--dim);margin:12px 0 0}
+
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:6px}
+  .grid3 figure{margin:0}
+  .grid3 img{width:100%;height:auto;border-radius:7px;border:1px solid var(--line);display:block}
+  .grid3 figcaption{font-size:12.5px;color:var(--dim);margin-top:9px;line-height:1.5}
+  .grid3 figcaption b{color:var(--ink);font-weight:600;display:block;margin-bottom:2px}
+
+  .vert{display:grid;grid-template-columns:220px 1fr;gap:26px;align-items:start}
+  .vert video{border-radius:8px;border:1px solid var(--line)}
+
+  ol.steps{margin:0;padding-left:0;list-style:none;counter-reset:s}
+  ol.steps li{counter-increment:s;position:relative;padding:0 0 20px 44px;border-left:1px solid var(--line);margin-left:11px}
+  ol.steps li:last-child{border-left-color:transparent;padding-bottom:0}
+  ol.steps li::before{
+    content:counter(s,decimal-leading-zero);
+    position:absolute;left:-11px;top:-2px;width:22px;height:22px;border-radius:50%;
+    background:var(--panel);border:1px solid var(--line);color:var(--amber);
+    font-size:10.5px;font-weight:700;display:flex;align-items:center;justify-content:center;
+  }
+  ol.steps b{display:block;margin-bottom:3px}
+  ol.steps span{color:#c6ced5;font-size:15px}
+
+  .note{background:var(--panel);border:1px solid var(--line);border-left:2px solid var(--amber);border-radius:8px;padding:18px 20px;margin:30px 0 0}
+  .note p{margin:0 0 10px;font-size:15px;color:#c6ced5}
+  .note p:last-child{margin-bottom:0}
+  .note b{color:var(--ink)}
+
+  ul.work{list-style:none;margin:0;padding:0}
+  ul.work li{padding:15px 0;border-bottom:1px solid var(--line)}
+  ul.work li:last-child{border-bottom:0}
+  ul.work .t{font-weight:600}
+  ul.work .d{color:var(--dim);font-size:14.5px;margin-top:3px}
+
+  footer{padding:44px 0 70px;border-top:1px solid var(--line);margin-top:44px;font-size:14.5px;color:var(--dim)}
+  footer a{color:var(--ink)}
+
+  @media (max-width:700px){
+    h1{font-size:29px}
+    .grid3{grid-template-columns:1fr}
+    .vert{grid-template-columns:1fr}
+    .vert video{max-width:230px}
+    header{padding-top:40px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="kicker">Video content &amp; visual design · spec portfolio</p>
+  <h1>Yang Fei</h1>
+  <p class="lede">I run the whole AI filmmaking loop on my own — script, shot list, looks, generation, cut. The part I care about is where the model stops and the human decision starts.</p>
+  <div class="meta">
+    <span><b>Based</b> Shenzhen, China (UTC+8)</span>
+    <span><b>Overlap</b> 20:00–24:00 CST = 08:00–12:00 ET</span>
+    <span><b>10+ yrs</b> 4A visual &amp; interaction design</span>
+  </div>
+</header>
+
+<section>
+  <h2>The piece</h2>
+  <h3>Slow Morning — 16 seconds, three shots</h3>
+  <p class="lede" style="font-size:16px;margin-bottom:22px">One brief, carried end to end. Everything below was generated for this page, so you are judging my process and not a stock reel.</p>
+
+  <div class="player">
+    <video controls preload="metadata" playsinline poster="media/poster_film.jpg">
+      <source src="media/film_16x9.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <p class="cap">16.1s · 1920×1080 source · 24fps · ambient audio is the model's own — there is no music bed (see the disclosure below).</p>
+
+  <div class="grid3" style="margin-top:34px">
+    <figure>
+      <img src="media/poster1.jpg" alt="Rain on a window at dawn with city bokeh">
+      <figcaption><b>01 · Establishing — 6.0s</b>Slow push-in. Rain on glass, city bokeh beyond. Sets the light direction the other two shots obey.</figcaption>
+    </figure>
+    <figure>
+      <img src="media/poster2.jpg" alt="Two hands lifting a cup, backlit steam">
+      <figcaption><b>02 · Insert — 5.0s</b>Hands lift the cup, steam catches the backlight. No face — the cast is a prop and a sleeve, so continuity can't break.</figcaption>
+    </figure>
+    <figure>
+      <img src="media/poster3.jpg" alt="Close up of coffee surface settling">
+      <figcaption><b>03 · Payoff — 5.0s</b>The cup lands, the surface settles. Cut on hard cuts, 0.6s fade in, 0.8s fade out.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section>
+  <h2>Same look, cut vertical</h2>
+  <div class="vert">
+    <video controls preload="metadata" playsinline poster="media/poster4.jpg">
+      <source src="media/shot4.mp4" type="video/mp4">
+    </video>
+    <div>
+      <h3>9:16 social cut — 5.0s</h3>
+      <p class="lede" style="font-size:15.5px">Reframed for feed, not cropped from the film. The composition is rebuilt around the vertical: subject low, deliberate empty space in the upper third where a caption lands, steam rising into the gap.</p>
+      <p class="cap" style="margin-top:14px">A horizontal cut squeezed into 9:16 loses its subject. This one was shot as a vertical from the start.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>How it was made</h2>
+  <ol class="steps">
+    <li>
+      <b>One line of brief</b>
+      <span>A silent morning ritual, three shots, one warm practical light against one cold window. Nothing more was written down before generating.</span>
+    </li>
+    <li>
+      <b>Lock the look before spending a single render</b>
+      <span>Palette, lens, light direction, grain and camera behaviour were written once and repeated <em>verbatim</em> in all four prompts. This is the whole reason consecutive shots read as the same world. It is the cheapest step and the one most people skip.</span>
+    </li>
+    <li>
+      <b>Generate the shots</b>
+      <span>Four text-to-video generations at 1080p, 24fps, each 5–6s, with the model's native audio kept. Shot list before prompts — always, otherwise you are just rolling dice and hoping two of them match.</span>
+    </li>
+    <li>
+      <b>Cut it</b>
+      <span>Hard cuts between shots, a 0.6s fade in from black and a 0.8s fade out, audio faded to match. Deliberately sparse — nothing is on the timeline that does not earn its place.</span>
+    </li>
+    <li>
+      <b>Deliver for both frames</b>
+      <span>16:9 master plus a 9:16 cut composed separately, and stills pulled for thumbnails. One shoot, three placements.</span>
+    </li>
+  </ol>
+
+  <div class="note">
+    <p><b>AI disclosure, plainly.</b> Every frame on this page is AI-generated, and I am the one who directed it. Nothing here is presented as live-action footage I shot, and no stock material was used.</p>
+    <p><b>No music bed, on purpose.</b> I do not ship audio I cannot license. The ambience you hear comes with the generated clips. Where a brief needs a score, the track gets licensed first — the edit waits.</p>
+    <p><b>Why a spec piece instead of a reel.</b> Ten years of agency client work (Dentsu, Hakuhodo, Leo Burnett) sits under NDA and is not mine to publish. So instead of sending a link you cannot open, I made something new, end to end, and you can watch it right here.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Design &amp; engineering, the same hands</h2>
+  <ul class="work">
+    <li>
+      <div class="t"><a href="https://github.com/yff124/cjk-text-render">cjk-text-render</a></div>
+      <div class="d">A CJK line-breaking and kinsoku engine. Latin-first tooling treats Chinese and Japanese typography as an edge case and fails silently. Full rules, not patches.</div>
+    </li>
+    <li>
+      <div class="t"><a href="https://yff124.github.io/ai-readiness-check/">AI readiness diagnostic</a> · <a href="https://github.com/yff124/ai-readiness-check">source</a></div>
+      <div class="d">A working tool that scores where AI actually pays back first inside a business, plus a model-selection page. Live, not a deck.</div>
+    </li>
+    <li>
+      <div class="t"><a href="https://github.com/yff124/coverkit">coverkit</a> / <a href="https://github.com/yff124/coverkit-web">coverkit-web</a></div>
+      <div class="d">Cover art generation with real composition rules and a browser front end. Built solo, end to end.</div>
+    </li>
+    <li>
+      <div class="t"><a href="https://github.com/yff124/amazon-listing-image-check">amazon-listing-image-check</a></div>
+      <div class="d">Checks listing images against Amazon's actual technical requirements, so a rejection is caught before submission instead of after.</div>
+    </li>
+    <li>
+      <div class="t">WeChat mini program — cover generator</div>
+      <div class="d">Design, front end and the release pipeline for a live consumer utility, solo. Vertical product work down to the release step.</div>
+    </li>
+  </ul>
+</section>
+
+<footer>
+  <p>Yang Fei · <a href="mailto:felixyang124@agent.qq.com">felixyang124@agent.qq.com</a> · <a href="https://github.com/yff124">github.com/yff124</a></p>
+  <p style="margin-top:8px">Want a different piece? Give me a product and a format and I will make that instead — one real piece beats a reel.</p>
+</footer>
+
+</div>
+</body>
+</html>
