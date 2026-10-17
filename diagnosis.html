@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>AI 机会诊断 · 样张（脱敏）</title>
+<style>
+  :root{
+    --ink:#14181d; --ink2:#3d4653; --ink3:#6b7684; --line:#dfe3e8;
+    --paper:#ffffff; --bg:#f5f6f7; --accent:#0f5c5c; --accent2:#b4530a;
+    --mark:#fdf6ec;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+    font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+  }
+  .page{
+    width:210mm; min-height:297mm; padding:20mm 18mm 16mm; margin:0 auto 10mm;
+    background:var(--paper); position:relative;
+    box-shadow:0 1px 4px rgba(20,24,29,.08);
+  }
+  .folio{position:absolute;right:18mm;bottom:10mm;font-size:11px;color:var(--ink3);letter-spacing:.06em;}
+  .runhead{position:absolute;left:18mm;top:10mm;font-size:10.5px;color:var(--ink3);letter-spacing:.12em;}
+  h1{font-size:30px;line-height:1.3;margin:0 0 10px;letter-spacing:-.01em;font-weight:700;}
+  h2{font-size:19px;margin:34px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line);font-weight:700;letter-spacing:.01em;}
+  h2 .num{color:var(--accent);font-variant-numeric:tabular-nums;margin-right:10px;font-size:15px;letter-spacing:.08em;}
+  h3{font-size:15.5px;margin:22px 0 8px;font-weight:700;}
+  p{margin:0 0 12px;color:var(--ink2);}
+  .lead{font-size:16px;color:var(--ink);line-height:1.8;}
+  small,.small{font-size:12.5px;color:var(--ink3);line-height:1.65;}
+  strong{color:var(--ink);font-weight:600;}
+  .kicker{font-size:11.5px;letter-spacing:.22em;color:var(--accent);margin-bottom:18px;}
+  .sub{font-size:15px;color:var(--ink3);margin:0 0 4px;}
+  hr{border:0;border-top:1px solid var(--line);margin:26px 0;}
+  table{width:100%;border-collapse:collapse;margin:14px 0 18px;font-size:13px;}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top;}
+  th{font-weight:600;font-size:12px;color:var(--ink3);letter-spacing:.06em;background:#fafbfc;}
+  td.n{font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .r{text-align:right;}
+  .box{background:var(--mark);border-left:3px solid var(--accent2);padding:14px 16px;margin:18px 0;font-size:13.5px;color:var(--ink2);}
+  .rule{background:#f7f9fa;border:1px solid var(--line);padding:14px 16px;margin:16px 0;font-size:13px;color:var(--ink2);}
+  ul,ol{margin:0 0 14px;padding-left:20px;color:var(--ink2);}
+  li{margin-bottom:7px;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .card{border:1px solid var(--line);padding:14px 16px;background:#fff;}
+  .card .t{font-weight:700;font-size:13.5px;margin-bottom:6px;}
+  .score{font-variant-numeric:tabular-nums;}
+  .hi{color:var(--accent);font-weight:700;}
+  .lo{color:var(--ink3);}
+  .badge{display:inline-block;font-size:11px;letter-spacing:.08em;border:1px solid var(--accent);color:var(--accent);padding:2px 7px;margin-left:8px;vertical-align:2px;}
+  .cover{display:flex;flex-direction:column;justify-content:center;}
+  .cover h1{font-size:38px;line-height:1.25;}
+  .meta{margin-top:8px;font-size:13px;color:var(--ink3);}
+  .cover .band{height:4px;width:64px;background:var(--accent);margin:26px 0;}
+  .foot{margin-top:auto;padding-top:24px;border-top:1px solid var(--line);font-size:12px;color:var(--ink3);}
+  @media print{
+    body{background:#fff;}
+    .page{box-shadow:none;margin:0;width:auto;min-height:auto;page-break-after:always;}
+    .page:last-child{page-break-after:auto;}
+    @page{size:A4;margin:0;}
+  }
+  @media screen and (max-width:760px){
+    .page{width:100%;min-height:0;padding:24px 18px;}
+    .grid2{grid-template-columns:1fr;}
+    .runhead,.folio{position:static;margin-bottom:8px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ P1 封面 ============ -->
+<section class="page cover">
+  <div class="kicker">AI 机会诊断 · 样 张</div>
+  <h1>三个环节，<br>846 个小时</h1>
+  <div class="band"></div>
+  <p class="lead" style="max-width:150mm;">一份只针对一家企业的诊断：<br>
+  哪三个环节最该先动、AI 接手哪一段、人保留哪一段、<br>怎么算它对不对、30 天怎么排。</p>
+  <div class="meta">
+    案例对象：一家膜材料与膜工程企业（华东 · 已脱敏）<br>
+    依据：公开招聘信息与官网可查资料，不含任何非公开信息<br>
+    性质：交付形态样张 —— 真实客户版为 10–15 页，48 小时内出
+  </div>
+  <div class="foot">
+    杨飞 · felixyang124@agent.qq.com<br>
+    <span class="small">本文件为样张。公司名称、项目与数字均已脱敏；文中工时与金额为口径示例，用于说明算法，不构成对该企业的评估或承诺。</span>
+  </div>
+</section>
+
+<!-- ============ P2 结论 ============ -->
+<section class="page">
+  <div class="runhead">AI 机会诊断 · 样张（脱敏）</div>
+  <h2><span class="num">00</span>一页结论</h2>
+
+  <p class="lead">如果只做一件事，做「询盘 → 选型」这一段。如果只能投三周，投这一段的前十个询盘。</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:19%">环节</th>
+        <th style="width:23%">现在怎么跑</th>
+        <th style="width:22%">AI 接手的那一段</th>
+        <th style="width:16%">人保留</th>
+        <th style="width:20%">验收口径 · 年省</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>1 · 询盘选型</strong><br><span class="small">水质参数 → 膜型</span></td>
+        <td>工程师凭经验翻历史项目，逐个问参数，40 分钟一份</td>
+        <td>从水质参数生成<b>候选膜型 + 通量区间 + 清洗周期</b>初稿，并列出依据的实验/项目条号</td>
+        <td>最终选型、对外承诺、异常工况判断</td>
+        <td>抽 20 单，人工改动 ≤2 处<br><span class="hi">≈ 390 h</span></td>
+      </tr>
+      <tr>
+        <td><strong>2 · 技术方案复用</strong><br><span class="small">投标 / 技改方案</span></td>
+        <td>每份标书约 1.5 天在旧文件里找能用的段落</td>
+        <td>按招标条款自动检索既有段落，输出带出处的拼装稿</td>
+        <td>技术承诺、偏离表、报价口径</td>
+        <td>每份撰写时间下降 ≥35%<br><span class="hi">≈ 192 h</span></td>
+      </tr>
+      <tr>
+        <td><strong>3 · 报价与 BOM 核对</strong></td>
+        <td>人工逐行比对报价单、BOM、技术协议</td>
+        <td>字段级差异清单（缺项 / 单位 / 规格偏差）</td>
+        <td>最终报价审批</td>
+        <td>抽检 30 单，漏项归零<br><span class="hi">≈ 264 h</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box">
+    <strong>合计约 846 人时 / 年。</strong>按内部综合人时成本 ¥80 计，约 <strong>¥67,680 / 年</strong>。
+    这不是"AI 能省下的钱"的乐观估计，是<b>只做这三段、且只按已跑通的流程折算</b>的结果 —— 见 §05 的算式与假设。
+  </div>
+
+  <h3>三句判断</h3>
+  <ol>
+    <li><strong>最该先做的不是"知识库"。</strong>知识库是结果，不是第一个动作。第一个动作是把散在个人电脑里的历史项目，变成一张能被校对的表。</li>
+    <li><strong>每一段都必须有"对照物"。</strong>能对着历史订单判对错的环节，才排得进前三；判不了对错的，一律往后放（§02 第 7、8 名）。</li>
+    <li><strong>不做三件事：</strong>通用问答机器人、训练自己的模型、按年付费的平台。理由见 §06。</li>
+  </ol>
+
+  <div class="folio">1 / 6</div>
+</section>
+
+<!-- ============ P3 方法 ============ -->
+<section class="page">
+  <div class="runhead">AI 机会诊断 · 样张（脱敏）</div>
+  <h2><span class="num">01</span>方法：为什么第一刀不切在"知识库"</h2>
+
+  <p>大多数企业的第一个 AI 项目是同一句话：把产品手册、技术资料、制度文件喂进去，做一个能问答的机器人。它失败的方式也高度一致 —— <strong>答得看起来对，但没人敢用在客户身上；答错了，也没有人能发现。</strong></p>
+
+  <p>这不是模型的问题，是这类项目在下面六项里有两项天然拿 0：</p>
+
+  <table>
+    <thead><tr><th style="width:22%">维度</th><th style="width:26%">问什么</th><th>0 分长什么样</th></tr></thead>
+    <tbody>
+      <tr><td>① 频次</td><td>这件事一天/一周发生几次</td><td>一个季度才碰一次 —— 练不出手感，也摊不平搭建成本</td></tr>
+      <tr><td>② 规则稳定度</td><td>判断依据会不会每月变</td><td>每次靠"看情况"，没有可写下来的规则</td></tr>
+      <tr><td>③ 输入可得性</td><td>喂进去的东西现在在哪</td><td>在个人电脑、微信、纸质台账、离职同事的脑子里</td></tr>
+      <tr><td>④ 错误代价</td><td>错了会赔多少钱 / 多久才发现</td><td>错了当场看不出来，三个月后客户投诉才知道</td></tr>
+      <tr><td>⑤ 人的判断占比</td><td>这件事有多少必须靠人</td><td>几乎全是经验判断，AI 只能围观</td></tr>
+      <tr><td>⑥ 可验收性</td><td>怎么证明它做对了</td><td>没有对照物 —— 只能说"感觉还行"</td></tr>
+    </tbody>
+  </table>
+
+  <p>「知识库问答」通常在 <strong>③ 输入可得性</strong> 和 <strong>⑥ 可验收性</strong> 上双 0。所以它做出来的东西不是错的，是<strong>无法被采用</strong>：业务方不会为一句"感觉还行"签字，法务也不敢让它直接对客户说话。</p>
+
+  <div class="rule">
+    <strong>本诊断只用一条排序规则：</strong>六维各 0–2 分，满分 12。先看 ③ 和 ⑥ —— 这两项拿 0 的环节，无论 AI 效果多好，都不进前三。其余四维决定名次。
+  </div>
+
+  <p class="small">这不是行业里最先进的评估框架，是能在半天内对着一家企业的真实数据做完、并且结论能被业务部门反驳的那一种。诊断的价值不在于框架有多复杂，而在于<b>它敢把八个环节排成一列，并且说出第 7、8 名为什么不做</b>。</p>
+
+  <div class="folio">2 / 6</div>
+</section>
+
+<!-- ============ P4 打分表 ============ -->
+<section class="page">
+  <div class="runhead">AI 机会诊断 · 样张（脱敏）</div>
+  <h2><span class="num">02</span>八个候选环节，一张表排完</h2>
+
+  <p class="small">口径：① 频次 ② 规则稳定度 ③ 输入可得性 ④ 错误代价（此项<b>分高=错得起</b>） ⑤ 人的判断占比（分高=人占比低） ⑥ 可验收性。满分 12。</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:4%">#</th><th style="width:30%">环节</th>
+        <th class="r">①</th><th class="r">②</th><th class="r">③</th><th class="r">④</th><th class="r">⑤</th><th class="r">⑥</th>
+        <th class="r" style="width:9%">合计</th><th style="width:26%">一句话理由</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="n">1</td><td><strong>询盘 → 选型建议</strong></td><td class="r">2</td><td class="r">2</td><td class="r">2</td><td class="r">2</td><td class="r">1</td><td class="r">2</td><td class="r hi">11</td><td>有历史订单可对照，错在初稿阶段，人还在环里</td></tr>
+      <tr><td class="n">2</td><td><strong>技术方案 / 标书复用</strong></td><td class="r">2</td><td class="r">2</td><td class="r">2</td><td class="r">1</td><td class="r">1</td><td class="r">2</td><td class="r hi">10</td><td>旧标书就是现成的语料，且中标结果能反证</td></tr>
+      <tr><td class="n">3</td><td><strong>报价单 / BOM 核对</strong></td><td class="r">2</td><td class="r">2</td><td class="r">1</td><td class="r">2</td><td class="r">2</td><td class="r">2</td><td class="r hi">11</td><td>纯字段比对，最接近"零判断"；差在数据散在 Excel</td></tr>
+      <tr><td class="n">4</td><td>现场服务记录归档与故障归类</td><td class="r">1</td><td class="r">1</td><td class="r">1</td><td class="r">2</td><td class="r">2</td><td class="r">1</td><td class="r">8</td><td>价值在半年后才显现，前面推不动</td></tr>
+      <tr><td class="n">5</td><td>产品手册 / 多语言版本</td><td class="r">1</td><td class="r">2</td><td class="r">2</td><td class="r">2</td><td class="r">2</td><td class="r">1</td><td class="r">10</td><td>可做，但省的是"看得见的小时"，不是决策时间</td></tr>
+      <tr><td class="n">6</td><td>展会 / 官网 / 公众号内容生产</td><td class="r">1</td><td class="r">2</td><td class="r">2</td><td class="r">2</td><td class="r">2</td><td class="r">0</td><td class="r">9</td><td><b>⑥ 拿 0</b>：内容好坏没有对照物，投入无法证明有效</td></tr>
+      <tr><td class="n">7</td><td>内部知识库问答机器人</td><td class="r">2</td><td class="r">1</td><td class="r">0</td><td class="r">2</td><td class="r">1</td><td class="r">0</td><td class="r lo">6</td><td><b>③⑥ 双 0</b>：资料在个人电脑；答对答错无从判定</td></tr>
+      <tr><td class="n">8</td><td>销售预测</td><td class="r">1</td><td class="r">0</td><td class="r">1</td><td class="r">0</td><td class="r">1</td><td class="r">0</td><td class="r lo">3</td><td>数据量不够，错一次代价最大 —— 这一项永远排最后</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box">
+    <strong>注意第 7 名。</strong>它恰好是国内企业最常做的那个项目，也恰好是这张表里 ③ 和 ⑥ 双 0 的那一项。
+    这不是巧合 —— <b>它之所以流行，是因为它最好演示</b>，不是因为它在六维里分数高。
+  </div>
+
+  <p class="small">第 3 名与第 1 名同分（11），但排序放在第 1 名之后：报价核对省下的是"核对时间"，询盘选型省下的是"客户等待时间 + 工程师被占用"。后者直接连着成交，所以先做。</p>
+
+  <div class="folio">3 / 6</div>
+</section>
+
+<!-- ============ P5 拆解 ============ -->
+<section class="page">
+  <div class="runhead">AI 机会诊断 · 样张（脱敏）</div>
+  <h2><span class="num">03</span>第一名拆开看：询盘 → 选型</h2>
+
+  <h3>现在的流程（现场访谈得到，非推测）</h3>
+  <p>客户询盘通常从一通电话或一条微信开始，参数是零散给的：水量、进水水质（浊度、COD、含盐量、温度）、出水要求、场地限制。工程师接到后，先在自己的电脑里翻几个相似的历史项目，再凭经验给出 1–2 个候选膜型，附一个通量区间和清洗周期。<strong>一份约 40 分钟，其中 25 分钟在找资料。</strong></p>
+
+  <h3>卡在哪</h3>
+  <ul>
+    <li><strong>资料在人的电脑里。</strong>历史项目的参数与最终选型，没有一张统一的表；问同一个人第二次，答案可能不一样。</li>
+    <li><strong>新人接不了。</strong>这类判断要三年才敢独立做，人一走，经验直接归零。</li>
+    <li><strong>客户等不起。</strong>询盘到报价的间隔越长，客户越容易在这期间被同行接走。</li>
+  </ul>
+
+  <h3>AI 接手的那一段（只这一段）</h3>
+  <div class="grid2">
+    <div class="card">
+      <div class="t">输入</div>
+      <p class="small" style="margin:0">客户给的水质与水量参数（缺项自动列出，不再来回问）</p>
+    </div>
+    <div class="card">
+      <div class="t">输出</div>
+      <p class="small" style="margin:0">2–3 个候选膜型 + 通量区间 + 清洗周期建议，<b>每一条都带出处</b>（哪个项目、哪份实验、第几条）</p>
+    </div>
+    <div class="card">
+      <div class="t">人保留</div>
+      <p class="small" style="margin:0">最终选型、对客户的性能承诺、异常工况（高盐、高温、含油）的判断</p>
+    </div>
+    <div class="card">
+      <div class="t">为什么必须是"带出处"</div>
+      <p class="small" style="margin:0">不带出处，工程师无法校错，就只能全部重做 —— 那等于没做</p>
+    </div>
+  </div>
+
+  <h3>验收口径（写进合同的那一句）</h3>
+  <div class="rule">
+    抽 20 个真实询盘，让工程师在 AI 初稿上修改。判定标准：<strong>平均改动不超过 2 处，且没有任何一次改动是因为"AI 说错了膜型"</strong>。
+    达不到，本环节不算交付；达到了，才谈第 2 个环节。
+  </div>
+
+  <h3>同一套结构套到第 2、3 名</h3>
+  <table>
+    <thead><tr><th style="width:16%">环节</th><th style="width:28%">AI 段</th><th style="width:20%">人段</th><th>验收</th></tr></thead>
+    <tbody>
+      <tr><td>标书复用</td><td>按招标条款检索既有段落，输出带出处的拼装稿</td><td>技术承诺、偏离表</td><td>撰写时间下降 ≥35%，且无一条承诺超出既有案例</td></tr>
+      <tr><td>报价核对</td><td>报价单 / BOM / 技术协议三方字段级比对</td><td>最终报价审批</td><td>抽检 30 单，缺项与单位错漏为 0</td></tr>
+    </tbody>
+  </table>
+
+  <div class="folio">4 / 6</div>
+</section>
+
+<!-- ============ P6 30天 + 成本 ============ -->
+<section class="page">
+  <div class="runhead">AI 机会诊断 · 样张（脱敏）</div>
+  <h2><span class="num">04</span>30 天：每周一个可验收交付物</h2>
+
+  <table>
+    <thead><tr><th style="width:12%">周</th><th style="width:34%">做什么</th><th style="width:26%">谁做</th><th>本周交付物（没有它就算失败）</th></tr></thead>
+    <tbody>
+      <tr><td><strong>第 1 周</strong></td><td>抽 30 个历史询盘，把「水质参数 → 最终膜型 → 实际通量与清洗周期」做成一张表</td><td>业务方出人，AI 辅助抽取</td><td>一张 30 行的结构化对照表（<b>这张表本身就是资产</b>）</td></tr>
+      <tr><td><strong>第 2 周</strong></td><td>做一个"填参数 → 出候选 + 出处"的工具。不做聊天，不做通用问答</td><td>我方</td><td>能对 30 条历史数据全部跑通的工具</td></tr>
+      <tr><td><strong>第 3 周</strong></td><td>并跑 20 个真实询盘，记录工程师每一处改动</td><td>双方</td><td>改动清单（这条清单决定后面还做不做）</td></tr>
+      <tr><td><strong>第 4 周</strong></td><td>定验收口径，决定是否扩到第 2 个环节</td><td>双方</td><td>一页结论：扩 / 不扩，以及理由</td></tr>
+    </tbody>
+  </table>
+
+  <p class="small">任何一周没有交付物，项目当场停。这不是流程洁癖 —— 是防止"做了三个月，说不清有没有用"。</p>
+
+  <h2><span class="num">05</span>成本与收益：算式写出来，假设摆在明面上</h2>
+
+  <p class="small">以下为<b>口径示例</b>，用来说明怎么算，不代表该企业的真实财务数据。真实客户版会替换为对方的实际人时与费率。</p>
+
+  <div class="rule">
+    <strong>假设</strong>（真实项目里逐条向客户确认，不默认）：<br>
+    · 内部综合人时成本 <b>¥80 / 小时</b>（含社保与分摊）<br>
+    · 询盘量 <b>15 个 / 周</b>，每个 40 分钟，其中 25 分钟在找资料<br>
+    · 标书与技改方案 <b>40 份 / 年</b>，每份 1.5 天在检索旧段落<br>
+    · 报价单 <b>60 份 / 月</b>，每份 30 分钟人工比对
+  </div>
+
+  <table>
+    <thead><tr><th style="width:26%">环节</th><th style="width:44%">算式</th><th class="r">年省人时</th><th class="r">折合</th></tr></thead>
+    <tbody>
+      <tr><td>询盘选型</td><td>15 个 × (40−10) 分钟 × 52 周 ÷ 60</td><td class="r n">390 h</td><td class="r n">¥31,200</td></tr>
+      <tr><td>标书复用</td><td>40 份 × 1.5 天 × 40% × 8 h</td><td class="r n">192 h</td><td class="r n">¥15,360</td></tr>
+      <tr><td>报价核对</td><td>60 × (30−8) 分钟 × 12 月 ÷ 60</td><td class="r n">264 h</td><td class="r n">¥21,120</td></tr>
+      <tr><td><strong>合计</strong></td><td>三段都跑通，且不打折</td><td class="r n hi"><strong>846 h</strong></td><td class="r n hi"><strong>¥67,680</strong></td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>回本：</strong>只算第 1 个环节 —— 投入 ¥12,000（约 8–10 人日）÷ ¥31,200 × 12 ≈ <strong>4.6 个月</strong>；三个环节全上 —— 投入约 ¥30,000 ÷ ¥67,680 × 12 ≈ <strong>5.3 个月</strong>。这个数字不算惊艳，它之所以可信，是因为它<b>没有把"效率提升"折算成"多接订单"</b>，只算了省下来的时间；也没有把省下来的时间全部当作可释放产能 —— 打八折后再算，回本分别在 5.7 和 6.6 个月。</p>
+
+  <div class="folio">5 / 6</div>
+</section>
+
+<!-- ============ P7 不做 + 收费 ============ -->
+<section class="page">
+  <div class="runhead">AI 机会诊断 · 样张（脱敏）</div>
+  <h2><span class="num">06</span>明确不做的三件事，和一定会发生的三种失败</h2>
+
+  <h3>不做</h3>
+  <ol>
+    <li><strong>通用问答机器人。</strong>见 §02 第 7 名：③⑥ 双 0。做了也会变成"上线时演示一次，之后再没人打开"。</li>
+    <li><strong>训练自己的模型。</strong>这个体量的业务数据，微调的收益低于维护成本；用通用模型 + 你的结构化数据，效果差距在业务可感知范围内。</li>
+    <li><strong>按年付费的平台。</strong>先按月租锁定三年，再发现只有两个功能在用 —— 这是这类采购最常见的形状。先用现成的模型和脚本跑通一个环节，再决定要不要买平台。</li>
+  </ol>
+
+  <h3>三种一定会发生的失败方式（提前写下来，是为了到时候认得出）</h3>
+  <table>
+    <thead><tr><th style="width:22%">失败方式</th><th style="width:38%">现场长什么样</th><th>对策（已写进流程）</th></tr></thead>
+    <tbody>
+      <tr><td><strong>口径漂移</strong></td><td>没人能说清"答对了算什么样"，于是每周标准都不一样</td><td>第 1 周就把验收口径写死（§03）</td></tr>
+      <tr><td><strong>无人验收</strong></td><td>业务方说"挺好用"，但没人签字，预算自然过不了下一轮</td><td>每周一个交付物，业务方签字才进下一周</td></tr>
+      <tr><td><strong>工具先行</strong></td><td>先买了平台，再回头找"这个平台能干什么"</td><td>顺序反过来：先定环节，工具最后选</td></tr>
+    </tbody>
+  </table>
+
+  <h2><span class="num">07</span>怎么合作</h2>
+
+  <table>
+    <thead><tr><th style="width:30%">项目</th><th style="width:22%">价格</th><th style="width:20%">周期</th><th>交付物</th></tr></thead>
+    <tbody>
+      <tr><td><strong>AI 机会诊断</strong></td><td class="n">¥299</td><td class="n">48 小时</td><td>10–15 页，本样张即交付形态；含八个环节打分、前三名拆解、30 天顺序</td></tr>
+      <tr><td><strong>单环节试点</strong></td><td class="n">¥12,000–18,000</td><td class="n">4 周</td><td>按 §04 的四周节奏，一个环节做到可验收</td></tr>
+      <tr><td>后续扩展</td><td class="n">按环节计</td><td class="n">2–3 周 / 个</td><td>沿用同一套验收口径，不重做方法</td></tr>
+    </tbody>
+  </table>
+
+  <p class="small">不做年框，不按人头计费。理由很简单：按年框收费，我有动力让你一直有项目；按环节收费，我只有把第 1 个环节做出可验收的结果，才有第 2 个。</p>
+
+  <div class="box">
+    <strong>这份诊断的第一个价值，是它敢说"第 7、8 名不做"。</strong>
+    如果你只想要一份"我们有 20 个 AI 机会"的清单，任何一家都能给；能给出一列排序、并且愿意为排序负责的，才是有用那份。
+  </div>
+
+  <div class="foot">
+    杨飞 ｜ felixyang124@agent.qq.com<br>
+    <span class="small">本文件为脱敏样张：案例企业的名称、项目与全部数字均已处理；工时与金额为口径示例，用于说明算法。真实客户版全部数据取自客户实际台账，并逐条标注来源。</span>
+  </div>
+
+  <div class="folio">6 / 6</div>
+</section>
+
+</body>
+</html>
