@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>直接下单 · AI 机会诊断 ¥299 / 轻量落地 ¥980 / 完整落地 ¥2,980</title>
+<meta name="description" content="三档明码标价，48 小时出第一版。每档写明交付物、不含什么、退款条件。不签年框，不按人头计费。">
+<style>
+  :root{
+    --ink:#14181d; --ink2:#3d4653; --ink3:#6b7684; --line:#dfe3e8;
+    --paper:#ffffff; --bg:#f5f6f7; --accent:#0f5c5c; --accent2:#b4530a;
+    --mark:#fdf6ec; --ok:#1f6b3a; --warn:#8a4b00;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+    font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px}
+  a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(15,92,92,.3)}
+  a:hover{border-bottom-color:var(--accent)}
+  code{background:#eef1f3;padding:1px 5px;border-radius:3px;font-size:.9em}
+
+  header{padding:56px 0 8px}
+  .kicker{font-size:11.5px;letter-spacing:.22em;color:var(--accent);margin:0 0 16px;text-transform:uppercase}
+  h1{font-size:34px;line-height:1.28;margin:0 0 14px;letter-spacing:-.01em;font-weight:700}
+  .lede{font-size:17px;color:var(--ink2);margin:0;max-width:62ch}
+  .meta{font-size:13px;color:var(--ink3);margin:20px 0 0;display:flex;flex-wrap:wrap;gap:4px 20px}
+
+  section{padding:44px 0 8px}
+  h2{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin:0 0 22px;font-weight:600}
+  h3{font-size:18px;margin:0 0 8px;font-weight:700}
+
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .tier{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:20px 18px 18px;display:flex;flex-direction:column}
+  .tier.pick{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+  .tier .name{font-size:14px;font-weight:700;letter-spacing:.02em}
+  .tier .price{font-size:30px;font-weight:700;letter-spacing:-.02em;margin:6px 0 2px;font-variant-numeric:tabular-nums}
+  .tier .price small{font-size:13px;font-weight:500;color:var(--ink3);letter-spacing:0}
+  .tier .when{font-size:12.5px;color:var(--accent2);margin:0 0 14px}
+  .tier ul{margin:0 0 14px;padding-left:18px;font-size:13.5px;color:var(--ink2);flex:1}
+  .tier li{margin-bottom:6px}
+  .tier .no{font-size:12.5px;color:var(--ink3);border-top:1px dashed var(--line);padding-top:10px;margin-top:auto}
+  .tier .no b{color:var(--warn);font-weight:600}
+
+  table{width:100%;border-collapse:collapse;margin:8px 0 4px;font-size:13.5px}
+  th,td{text-align:left;padding:10px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:11.5px;color:var(--ink3);letter-spacing:.06em;font-weight:600;background:#fafbfc}
+  td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+
+  .box{background:var(--mark);border-left:3px solid var(--accent2);padding:14px 16px;margin:18px 0;font-size:13.5px;color:var(--ink2)}
+  .rule{background:#f7f9fa;border:1px solid var(--line);border-radius:6px;padding:14px 16px;margin:16px 0;font-size:13px;color:var(--ink2)}
+  .small{font-size:12.5px;color:var(--ink3);line-height:1.65}
+
+  form{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:22px 20px}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+  .field .hint{font-weight:400;color:var(--ink3);font-size:12px;margin-left:6px}
+  input[type=text],textarea,select{
+    width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:5px;
+    font:inherit;font-size:14px;color:var(--ink);background:#fff
+  }
+  textarea{min-height:74px;resize:vertical}
+  input:focus,textarea:focus,select:focus{outline:2px solid rgba(15,92,92,.25);border-color:var(--accent)}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:18px}
+  button{
+    font:inherit;font-size:14px;font-weight:600;cursor:pointer;border-radius:5px;
+    padding:10px 18px;border:1px solid var(--accent);background:var(--accent);color:#fff
+  }
+  button.ghost{background:#fff;color:var(--accent)}
+  button:active{transform:translateY(1px)}
+  .status{font-size:12.5px;color:var(--ok);margin-left:4px}
+  .status.err{color:var(--accent2)}
+
+  pre.preview{background:#14181d;color:#dfe3e8;border-radius:6px;padding:14px 16px;font-size:12.5px;
+    line-height:1.6;overflow-x:auto;white-space:pre-wrap;word-break:break-word;margin:16px 0 0}
+
+  .pay{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:20px}
+  .pay .qrwrap{display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap}
+  .pay img.qr{width:180px;height:180px;border:1px solid var(--line);border-radius:6px;object-fit:contain;background:#fff}
+  .pay .manual{flex:1;min-width:220px}
+
+  footer{margin-top:52px;padding:26px 0 60px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink3)}
+
+  @media (max-width:760px){
+    header{padding:36px 0 4px}
+    h1{font-size:26px}
+    .tiers{grid-template-columns:1fr}
+    .row{grid-template-columns:1fr}
+  }
+  @media print{ body{background:#fff} .pay,form{break-inside:avoid} }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header>
+  <p class="kicker">直接下单 · 价格表</p>
+  <h1>三档，明码标价，<br>48 小时出第一版。</h1>
+  <p class="lede">不签年框，不按人头计费，不做「先聊三个月再报价」。每档都写明交付物、<b>不含什么</b>、以及什么情况下退钱。</p>
+  <p class="meta">
+    <span>交付方：杨飞（个人）</span>
+    <span>邮箱：felixyang124@agent.qq.com</span>
+    <span>样张：<a href="diagnosis.html">一份脱敏的完整诊断</a></span>
+  </p>
+</header>
+
+<section>
+  <h2>一 · 三档</h2>
+  <div class="tiers">
+    <div class="tier pick">
+      <div class="name">AI 机会诊断</div>
+      <div class="price">¥299</div>
+      <div class="when">48 小时交付 · 可全额抵扣后续任一档</div>
+      <ul>
+        <li>10–15 页，固定八节</li>
+        <li>八个候选环节打分排成一列</li>
+        <li>前三名各拆一段：AI 接哪段、人留哪段</li>
+        <li>验收口径 + 成本算式（假设写明）</li>
+        <li>第 7、8 名<b>为什么不做</b></li>
+      </ul>
+      <div class="no">不含：<b>不落地</b>，不给工具、不写代码、不做培训</div>
+    </div>
+
+    <div class="tier">
+      <div class="name">轻量落地</div>
+      <div class="price">¥980</div>
+      <div class="when">2 周交付 · 只做一个环节</div>
+      <ul>
+        <li>诊断里第 1 名环节的可跑工作流</li>
+        <li>一份 SOP（谁在什么时点按什么步骤做）</li>
+        <li>用你方真实数据跑通的验证记录</li>
+        <li>¥299 已付的全额抵扣 ⇒ 实付 ¥681</li>
+      </ul>
+      <div class="no">不含：<b>培训</b>，不含第 2、3 个环节</div>
+    </div>
+
+    <div class="tier">
+      <div class="name">完整落地</div>
+      <div class="price">¥2,980</div>
+      <div class="when">4 周交付 · 含 14 天陪跑</div>
+      <ul>
+        <li>工作流 + SOP（同轻量档）</li>
+        <li>员工培训一场（线上，≤2 小时）</li>
+        <li>交付后 14 天陪跑，出问题当场改</li>
+        <li>¥299 已付的全额抵扣 ⇒ 实付 ¥2,681</li>
+      </ul>
+      <div class="no">不含：<b>系统集成</b>（对接 ERP / 自建服务），需另议</div>
+    </div>
+  </div>
+
+  <div class="box">
+    <b>为什么第三档只有 ¥2,980。</b>因为定价按「两个月内回本」算，不按「AI 有多先进」算 —— 样张第五节把算式和假设全写出来了，你可以拿自己的数字改一遍再决定。按年框收费，我有动力让你一直有项目；按环节收费，我只有把第 1 个环节做出可验收的结果，才有第 2 个。
+  </div>
+</section>
+
+<section>
+  <h2>二 · 边界（写在付款之前）</h2>
+  <table>
+    <thead><tr><th style="width:26%">项</th><th>我的口径</th></tr></thead>
+    <tbody>
+      <tr><td><strong>交付形态</strong></td><td>文档 + 可跑的脚本/工作流 + 一份 SOP。所有结论标注来源（哪个文件、哪一条）。</td></tr>
+      <tr><td><strong>数据</strong></td><td>你方资料不出你方环境；需要用模型时按你方允许的通道走。可先签保密约定再给资料。</td></tr>
+      <tr><td><strong>不做的四类</strong></td><td>① 通用问答机器人（做出来没人用）② 训练自己的模型（这个体量不划算）③ 按年付费的平台选型（先跑通再买）④ 代做冒充人工的活（数据标注、刷量、代写论文一律不接）。</td></tr>
+      <tr><td><strong>不承诺</strong></td><td>不承诺「AI 替代几个人」，只承诺「这一段的可验收产出」。省下的人时怎么用，是你方的事。</td></tr>
+      <tr><td><strong>退款</strong></td><td>诊断交付后 <b>7 天内</b>，若八个环节里没有一条你认为能用的，<b>全额退，不用说明理由</b>。落地档同理：第 2 周结束验收不过，按未开始的周数退。</td></tr>
+      <tr><td><strong>不接</strong></td><td>需要伪造身份、绕过平台规则、或要求「把 AI 输出说成人工做的」项目。</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>三 · 下单（四句话，不用写邮件）</h2>
+  <form id="order" autocomplete="off">
+    <div class="field">
+      <label for="tier">要哪一档</label>
+      <select id="tier">
+        <option value="AI 机会诊断|299">AI 机会诊断 ¥299 · 48 小时 · 可全额抵扣</option>
+        <option value="轻量落地|980">轻量落地 ¥980 · 2 周 · 实付 ¥681（已抵扣）</option>
+        <option value="完整落地|2980">完整落地 ¥2,980 · 4 周 + 14 天陪跑 · 实付 ¥2,681（已抵扣）</option>
+        <option value="先问一句|0">还不确定，先问一句</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label for="who">行业 + 公司人数 <span class="hint">例：包装印刷，120 人</span></label>
+        <input type="text" id="who" placeholder="包装印刷，120 人">
+      </div>
+      <div class="field">
+        <label for="block">现在最堵的那一个环节 <span class="hint">一句就够</span></label>
+        <input type="text" id="block" placeholder="客户来图改稿，一版要 3 天">
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="docs">手上有什么资料 <span class="hint">手册 / 台账 / 工单 / 历史订单，有什么写什么</span></label>
+      <textarea id="docs" placeholder="三年历史订单 Excel，产品手册 PDF，企业微信里的聊天记录没整理"></textarea>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label for="when">希望什么时候拿到</label>
+        <input type="text" id="when" placeholder="本周内 / 月底前 / 不急">
+      </div>
+      <div class="field">
+        <label for="back">回信地址 <span class="hint">你填了我就知道往哪回</span></label>
+        <input type="text" id="back" placeholder="你的邮箱或微信">
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="button" id="send">生成并打开邮件</button>
+      <button type="button" class="ghost" id="copy">只复制文本</button>
+      <span class="status" id="status"></span>
+    </div>
+
+    <pre class="preview" id="preview" hidden></pre>
+  </form>
+
+  <p class="small" style="margin-top:14px">
+    没有服务器，也不收集任何数据 —— 表单只在你的浏览器里拼一封信，点「生成」后由你自己的邮件客户端发出。
+    不想用邮件：把下面预览里的五句话贴进微信或任何聊天窗口，一样有效。
+  </p>
+</section>
+
+<section>
+  <h2>四 · 付款</h2>
+  <div class="pay" id="paybox">
+    <div class="qrwrap">
+      <div id="qrside" hidden>
+        <img class="qr" id="qr" alt="收款二维码">
+        <p class="small" style="margin:8px 0 0">扫码付款后，把这封信发我，我按到账顺序排期。</p>
+      </div>
+      <div class="manual">
+        <h3 id="paytitle">先看需求，再收款</h3>
+        <p id="paytext">我不预收。你把上面四句发过来，我先回一句「这件事 299 够不够、还是要落地」—— 有些需求看完会发现不必花 299，那就直说。确认要做了，我再单独发付款方式（微信 / 支付宝 / 对公转账均可开票的走对公）。</p>
+        <p class="small" style="margin:0">这样做有个代价：你需要等我一次回复。好处是：<b>不会为一份用不上的报告先付钱。</b></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>杨飞 ｜ <a href="mailto:felixyang124@agent.qq.com">felixyang124@agent.qq.com</a> ｜ <a href="diagnosis.html">脱敏样张</a> ｜ <a href="index.html">作品页</a></div>
+  <div class="small" style="margin-top:8px">
+    价格为人民币含税口径，个人服务不开增值税专票（可开收据）；需要专票请提前说明，走对公另议。
+    本页不构成对任何具体效率提升的承诺，所有量化结论以诊断报告中写明的假设与算式为准。
+  </div>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var MAIL = "felixyang124@agent.qq.com";
+  var FIELDS = [
+    {id:"who",   label:"行业 + 公司人数"},
+    {id:"block", label:"现在最堵的环节"},
+    {id:"docs",  label:"手上有的资料"},
+    {id:"when",  label:"希望拿到的时间"},
+    {id:"back",  label:"回信地址"}
+  ];
+  var EMPTY = "（未填）";
+
+  function clean(v){
+    return String(v == null ? "" : v).replace(/\r\n/g, "\n").replace(/\s+$/,"").replace(/^\s+/,"");
+  }
+
+  function parseTier(raw){
+    var s = clean(raw);
+    var i = s.lastIndexOf("|");
+    if (i < 0) return {name:s || "先问一句", price:"0"};
+    return {name:s.slice(0,i), price:s.slice(i+1)};
+  }
+
+  function buildSubject(tier){
+    var p = Number(tier.price);
+    if (!p) return "咨询：AI 落地，先问一句";
+    return "下单：" + tier.name + "（¥" + p + "）";
+  }
+
+  function buildBody(state){
+    var lines = [];
+    lines.push("你好，");
+    lines.push("");
+    lines.push("按你页面上的四句话填的：");
+    lines.push("");
+    for (var i=0;i<FIELDS.length;i++){
+      var f = FIELDS[i];
+      var v = clean(state[f.id]);
+      lines.push("· " + f.label + "：" + (v ? v : EMPTY));
+    }
+    lines.push("");
+    if (Number(state.tierPrice)) {
+      lines.push("要的是「" + state.tierName + "」¥" + state.tierPrice + " 这一档。");
+    } else {
+      lines.push("还没定档，先说需求。");
+    }
+    lines.push("麻烦回一句「够 / 不够 / 该做哪一档」就行。");
+    lines.push("");
+    lines.push("—— 来自 order 页");
+    return lines.join("\n");
+  }
+
+  function buildMailto(state){
+    var tier = {name: state.tierName, price: state.tierPrice};
+    var subject = buildSubject(tier);
+    var body = buildBody(state);
+    return "mailto:" + MAIL
+      + "?subject=" + encodeURIComponent(subject)
+      + "&body=" + encodeURIComponent(body);
+  }
+
+  if (typeof module !== "undefined" && module.exports){
+    module.exports = {buildMailto:buildMailto, buildBody:buildBody, buildSubject:buildSubject, parseTier:parseTier};
+  }
+  if (typeof document === "undefined") return;
+
+  var $ = function(id){ return document.getElementById(id); };
+  var preview = $("preview"), status = $("status");
+
+  function readState(){
+    var t = parseTier($("tier") ? $("tier").value : "");
+    return {
+      tierName: t.name, tierPrice: t.price,
+      who: $("who") ? $("who").value : "",
+      block: $("block") ? $("block").value : "",
+      docs: $("docs") ? $("docs").value : "",
+      when: $("when") ? $("when").value : "",
+      back: $("back") ? $("back").value : ""
+    };
+  }
+
+  function paint(){
+    var st = readState();
+    var body = buildBody(st);
+    preview.textContent = "收件人：" + MAIL + "\n标题：" + buildSubject({name:st.tierName, price:st.tierPrice}) + "\n\n" + body;
+    preview.hidden = false;
+  }
+
+  function setStatus(msg, err){
+    if (!status) return;
+    status.textContent = msg || "";
+    status.className = "status" + (err ? " err" : "");
+  }
+
+  $("send").addEventListener("click", function(){
+    var st = readState();
+    if (!clean(st.block) && !clean(st.docs)) {
+      setStatus("先填「最堵的环节」或「手上有的资料」，否则我回不了实质内容。", true);
+      return;
+    }
+    paint();
+    window.location.href = buildMailto(st);
+    setStatus("邮件已在你的客户端打开，检查一下再点发送。");
+  });
+
+  $("copy").addEventListener("click", function(){
+    var st = readState();
+    paint();
+    var text = "收件人：" + MAIL + "\n标题：" + buildSubject({name:st.tierName, price:st.tierPrice}) + "\n\n" + buildBody(st);
+    var done = function(){ setStatus("已复制，粘贴到邮件或微信里即可。"); };
+    var fail = function(){ setStatus("浏览器不允许自动复制，请手动选中下面那段文字。", true); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fail);
+    } else {
+      var ta = document.createElement("textarea");
+      ta.value = text; document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); done(); } catch(e){ fail(); }
+      document.body.removeChild(ta);
+    }
+  });
+
+  ["who","block","docs","when","back","tier"].forEach(function(id){
+    var el = $(id);
+    if (el) el.addEventListener("input", function(){ if (!preview.hidden) paint(); });
+    if (el) el.addEventListener("change", function(){ if (!preview.hidden) paint(); });
+  });
+
+  /* 收款码渐进增强：图片在则直接付款，不在则退回「先看需求再收款」 */
+  (function payProbe(){
+    var side = $("qrside"), img = $("qr");
+    if (!side || !img) return;
+    var probe = new Image();
+    probe.onload = function(){
+      img.src = "media/pay-qr.png";
+      side.hidden = false;
+      var t = $("paytitle"), p = $("paytext");
+      if (t) t.textContent = "扫码直接付，附言写你要的那一档";
+      if (p) p.textContent = "¥299 诊断 / ¥980 轻量 / ¥2,980 完整，扫完把上面那封信发我，按到账顺序排期。付款前想先确认范围也可以 —— 先发信、不付款，一样处理。";
+    };
+    probe.onerror = function(){ side.hidden = true; };
+    probe.src = "media/pay-qr.png";
+  })();
+})();
+</script>
+</body>
+</html>
